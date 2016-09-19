@@ -1,0 +1,67 @@
+;; The first three lines of this file were inserted by DrRacket. They record metadata
+;; about the language level of this file in a form that our tools can easily process.
+#reader(lib "htdp-beginner-abbr-reader.ss" "lang")((modname triangle2) (read-case-sensitive #t) (teachpacks ()) (htdp-settings #(#t constructor repeating-decimal #f #t none #f () #f)))
+(define TEST0 (list
+               24
+               34 69
+               24))
+
+(define TEST1 (list
+               59
+               73 41
+               52 40 09
+               26 53 06 34
+               10 51 87 86 81
+               61 95 66 57 25 68
+               90 81 80 38 92 67 73
+               30 28 51 76 81 18 75 44
+               84 14 95 87 62 81 17 78 58
+               21 46 71 58 02 79 62 39 31 09
+               56 34 35 53 78 31 81 18 90 93 15
+               78 53 04 21 84 93 32 13 97 11 37 51
+               45 03 81 79 05 18 78 86 13 30 63 99 95
+               39 87 96 28 03 38 42 17 82 87 58 07 22 57
+               06 17 51 17 07 93 09 07 75 97 95 78 87 08 53
+               67 66 59 60 88 99 94 65 55 77 55 34 27 53 78 28
+               76 40 41 04 87 16 09 42 75 69 23 97 30 60 10 79 87
+               12 10 44 26 21 36 32 84 98 60 13 12 36 16 63 31 91 35
+               70 39 06 05 55 27 38 48 28 22 34 35 62 62 15 14 94 89 86
+               66 56 68 84 96 21 34 34 34 81 62 40 65 54 62 05 98 03 02 60))
+
+(define TEST2 (list
+               59
+               73 41
+               52 40 09
+               26 53 06 34))
+
+;(define (arrange lon)
+;  (split (tri 0 (count lon) lon 0)))
+
+(check-expect (count TEST0) 4)
+(check-expect (count TEST1) 210)
+(define (count lon)
+  (cond [(empty? lon) 0]
+        [else
+         (+ 1 (count (rest lon)))]))
+
+(check-expect (tri (count TEST0)) 0)
+(check-expect (tri (count TEST1)) 20)
+(define (tri n)
+  (cond [(= (* (integer-sqrt (* 2 n)) (+ (integer-sqrt (* 2 n)) 1)) (* 2 n)) (integer-sqrt (* 2 n))]
+        [else 0]))
+
+(check-expect (split 0 4 TEST2) (list (list 59) (list 73 41) (list 52 40 09) (list 26 53 06 34)))
+(define (split row lon)
+  (cond [(empty? lon) empty]
+        [else
+         (cons (build (+ 1 onrow) lon) (split (+ 1 onrow) row (trunc lon (+ 1 onrow))))]))
+
+(define (compile row lon)
+  (cond [(= count 
+
+(define (build count lon)
+  (cond [(= count 0) empty]
+        [else
+         (cons (first lon)
+               (build (- count 1) (rest lon)))]))
+
